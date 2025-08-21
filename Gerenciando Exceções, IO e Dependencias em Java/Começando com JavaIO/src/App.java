@@ -1,30 +1,30 @@
 
 import br.com.dio.persistence.FilePersistence;
-import br.com.dio.persistence.IOFilePersistence;
+import br.com.dio.persistence.NIOFilePersistence;
 import java.io.IOException;
 
 public class App {
     public static void main(String[] args) throws IOException{
-        FilePersistence persistence = new IOFilePersistence("user.csv");
+        FilePersistence persistence = new NIOFilePersistence("user.csv");
+        System.out.println("===============");
+        System.out.println(persistence.write("Ana;ana@ana.com;03/05/2005"));
+        System.out.println("===============");
+        System.out.println(persistence.write("Luana;luana@luana.com;04/05/2005"));
+        System.out.println("===============");
+        System.out.println(persistence.write("Ze;ze@ze.com;05/05/2005"));
 
-        System.out.println("\n==============");
-        System.out.println(persistence.write("Maria;maria@maria.com;dd/MM/yyyy;"));
-        System.out.println("==============");
-        System.out.println(persistence.write("João;joao@joao.com;dd/MM/yyyy;"));
-        System.out.println("==============");
-        System.out.println(persistence.write("Leo;leo@leo.com;dd/MM/yyyy;"));
-        System.out.println("==============");
-        System.out.println(persistence.write("Juca;juca@juca.com;dd/MM/yyyy;"));
-        System.out.println("==============");
-
+        System.out.println("===============");
         System.out.println(persistence.findAll());
-        System.out.println(persistence.findByID("leo"));
 
-        System.out.println(persistence.remove("joao")); //retorna true se conseguir e false se não
-        System.out.println(persistence.findByID("joao")); //não vai achar pq removeu
-
-        System.out.println("=======replace=======");
-        System.out.println(persistence.replace("@juca", "Carlos;carlos@carlos.com;05/05/2005"));
-        System.out.println(persistence.findAll());
+        System.out.println("===============");
+        System.out.println(persistence.findBy(";luana@"));
+        
+        System.out.println("===============");
+        System.out.println(persistence.remove("03/05"));
+        System.out.println(persistence.findBy(";ana"));
+        System.out.println(persistence.remove("laura")); //false
+        
+        System.out.println("===============");
+        System.out.println(persistence.replace("Ze", "Joaquim;joca@joca.com;08/06/1970"));
     }
 }

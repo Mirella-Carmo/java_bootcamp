@@ -42,7 +42,7 @@ public class IOFilePersistence implements FilePersistence{
     }
 
     @Override
-    public String findByID(String sentence) {
+    public String findBy(String sentence) {
         var found = "";
         try (var reader = new BufferedReader(new FileReader(currentDir + storedDir + fileName))){
             String line = reader.readLine();

@@ -8,5 +8,5 @@ public interface FilePersistence {
 
     String findAll();
 
-    String findByID(final String sentence);
+    String findBy(final String sentence);
 }
